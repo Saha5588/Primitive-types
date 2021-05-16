@@ -99,3 +99,21 @@ for item in stock_prices:
     print(item)
 for ticker, prices in stock_prices:
     print(prices+(prices*0.1))
+
+students_marks = [('SAM', 60), ('RAJ', 95), ('JOHN', 80)]
+
+
+def student_check(students_marks):
+
+    passing_marks = 50
+    student_of_the_year = ''
+    for students_name, marks in students_marks:
+        if marks > passing_marks:
+            passing_marks = marks
+            student_of_the_year = students_name
+        else:
+            pass
+    return(student_of_the_year, passing_marks)
+
+
+print(student_check(students_marks))
