@@ -117,3 +117,26 @@ def student_check(students_marks):
 
 
 print(student_check(students_marks))
+
+work_hours = [('abby', 100), ('billy', 400), ('cassie', 800)]
+
+
+def employee_check(work_hours):
+
+    current_max = 0
+    employee_of_the_month = ''
+
+    for employee, hours in work_hours:
+        if hours > current_max:
+            current_max = hours
+            employee_of_the_month = employee
+        else:
+            pass
+    return(employee_of_the_month, current_max)
+
+
+result = employee_check(work_hours)
+name, hours = employee_check(work_hours)
+print(result)
+print(name)
+print(hours)
