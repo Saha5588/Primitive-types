@@ -12,6 +12,7 @@
 # calling the name of the function and it wll print the string
 #
 from random import shuffle
+from typing import NamedTuple
 
 
 def say_hello():
@@ -145,32 +146,203 @@ print(name)
 print(hours)
 
 
-# INTERACTIONS BETWEEN PYTHON FUNCTIONS
-my_list = ['', 'o', '']
+#args and xargs
+def my_function(a, b, c=0):
+    return sum((a, b, c)) * 0.05
 
 
-def shuffle_list(my_list):
-    shuffle(my_list)
+print(my_function(20, 34))
 
-    return my_list
-
-
-def player_guess():
-    guess = ''
-    while guess not in ['0', '1', '2']:
-        guess = (input("please choose a number: 0,1 or 2"))
-    return int(guess)
+# So here we use  *args after the astrecs sign we can use any arbitary word
+# we can say *spam and any word after that astrecs. here args returns
+# tuples
 
 
-def check_guess(my_list, guess):
-    if my_list[guess] == 'o':
-        print('correct guess!')
+def myfunc(*args):
+    return sum(args) * 0.05
+
+
+print(myfunc(40, 60, 100, 1, 34))
+
+# here in this code we use ** because it defines a dictionary with its keys
+# and its values
+
+
+def myfunc(**kwargs):
+    if "fruit" in kwargs:
+        print('My choise of fruit is {}'.format(kwargs['fruit']))
     else:
-        print('wrong! better luck next time')
-        print(my_list)
+        print("i did not find any fruit here")
 
 
-my_list = ['', 'o', '']
-mixedup_list = shuffle_list(my_list)
-guess = player_guess()
-print(check_guess(mixedup_list, guess))
+print(myfunc(fruit='apple', veggies='lettuce'))
+
+
+def myfunc(**jellly):
+    if "fruit" in jellly:
+        print('My choise of fruit is {}'.format(jellly['fruit']))
+    else:
+        print("i did not find any fruit here")
+
+
+print(myfunc(fruit='apple', veggies='lettuce'))
+
+
+def myfunc(*args, **kwargs):
+    print('I would like to have {} {}'.format(args[0], kwargs['snacks']))
+
+
+print(myfunc(10, 20, 30, fruit='oranges', food='eggs', snacks='chips'))
+# **kwargs full form is keyword arguments
+# *args are just arguments
+
+
+def myfunc(*args):
+    even_numbers = []
+    for numbers in args:
+        if numbers % 2 == 0:
+            even_numbers.append(numbers)
+        else:
+            pass
+    return even_numbers
+
+
+print(myfunc(1, 52, 20, 5, 9, 4, 89, 4, 6, 2, 6, 65))
+
+
+def myfunc(word):
+    resulte = ""
+    for index, letter in enumerate(word):
+        if index % 2 == 0:
+            resulte += letter.lower()
+        else:
+            resulte += letter.upper()
+    return resulte
+
+
+print(myfunc('abhfbihbad'))
+
+# FUNCTION PYTHON PROBLEM
+
+
+def myfunc(a, b):
+    if a % 2 == 0 and b % 2 == 0:
+        if a < b:
+            return a
+        else:
+            return b
+    else:
+        if a > b:
+            return a
+        else:
+            return b
+
+
+print(myfunc(4, 6))
+# we can clean this up a lot and use min function
+
+
+def myfunc(a, b):
+    if a % 2 == 0 and b % 2 == 0:
+        return min(a, b)
+    else:
+        return max(a, b)
+
+
+print(myfunc(5, 6))
+
+# write a function that takes two word string and returns true if both
+# words begin with same letter
+
+
+def animal_cracker(text):
+    wordlist = text.upper().split()
+
+    first = wordlist[0]
+    second = wordlist[1]
+    return first[0] == second[0]
+
+
+print(animal_cracker('Levelheaded Llama'))
+print(animal_cracker('Crazy cat'))
+
+# Given two intergers, returns True if the sum of the integer is 20 or
+# if one of the integer is 20.If not,return False
+# makes_twenty(20,10) --> True
+# makes_twenty(12,8) --> True
+# makes_twenty(2,3) --> False
+
+
+def makes_twenty(a, b):
+    if a + b == 20:
+        return True
+    elif a == 20 or b == 20:
+        return True
+    else:
+        return False
+
+
+print(makes_twenty(5, 10))
+
+# But we can write much cleaner code than this
+
+
+def makes_twenty(a, b):
+    return a + b == 20 or a == 20 or b == 20
+
+
+print(makes_twenty(10, 10))
+
+# level 1 Problem
+# Write a function that capitalize the first and fourth letters of a
+# name
+
+
+def make_capital(name):
+
+    first_letter = name[0]
+    inbetween = name[1:3]
+    fourth_letter = name[3]
+    rest = name[4:]
+
+    return first_letter.upper() + inbetween + fourth_letter.upper() + rest
+
+
+print(make_capital('madhurjyasaha'))
+# we can use a capitalize method
+
+
+def make_capital(name):
+    first_half = name[:3]
+    seconed_half = name[3:]
+
+    return first_half.capitalize() + seconed_half.capitalize()
+
+
+print(make_capital('macdonalds'))
+# here the name is divided into two halfs and then the first two letters
+# are capitalized. capitalize() Converts the first character to upper case
+
+# Given a sentence, return a sentence with the words reversed
+
+
+def master_yoda(text):
+    wordlist = text.split()
+    reverse_wordlist = wordlist[::-1]
+    return ' '.join(reverse_wordlist)
+
+
+print(master_yoda('My name is Sunny'))
+
+# Given an integer n , return True if n is within 10 of either 100 or 200
+# almost_there(90) --> True
+# almost_there(104) --> True
+# almost_there(150) --> False
+# almost_there(209) --> True
+
+
+def almost_there(n):
+    return (abs(100 - n) <= 10) or (abs(200 - n) <= 10)
+
+
+print(almost_there(104))
