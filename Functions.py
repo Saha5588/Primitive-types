@@ -346,3 +346,7 @@ def almost_there(n):
 
 
 print(almost_there(104))
+
+
+# level 2 problem
+# Given a list of ints, True if the array contains a 3 next to a somewhere.
